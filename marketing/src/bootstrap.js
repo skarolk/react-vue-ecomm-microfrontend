@@ -1,10 +1,11 @@
 console.log("marketing app running ...");
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./App";
 
 // mount function to start up app
 const mount = (el) => {
-  ReactDOM.render(<h1>Marketing App</h1>, el);
+  ReactDOM.render(<App />, el);
 };
 
 // call mount immediately in development and isolation
