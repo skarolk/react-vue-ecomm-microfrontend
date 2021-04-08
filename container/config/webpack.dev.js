@@ -6,20 +6,18 @@ const commonConfig = require("./webpack.common");
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 8081,
+    port: 8080,
     historyApiFallback: {
       index: "index.html",
     },
   },
   plugins: [
     new ModuleFederationPlugin({
-      // used to declare global variable for app code in container
-      name: "marketing",
-      // whatever filename you want to use here is fine
-      filename: "remoteEntry.js",
-      exposes: {
-        // container will as for Marketing file which will provide bootstrap contents
-        "./MarketingApp": "./src/bootstrap",
+      // host doesn't require name, but convention dictates to assign name anyways
+      name: "container",
+      remotes: {
+        // name before @ must match ModuleFederationPlugin's name key value for incoming app
+        marketing: "marketing@http://localhost:8081/remoteEntry.js",
       },
     }),
     new HtmlWebpackPlugin({
