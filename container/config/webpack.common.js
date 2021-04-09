@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   module: {
     // loaders - process files
@@ -16,4 +18,10 @@ module.exports = {
       },
     ],
   },
+  // loads index.html
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };
