@@ -2,7 +2,7 @@ import React from "react";
 import MarketingApp from "./components/MarketingApp";
 
 export default () => {
-  console.log("testing yml actions - round 2");
+  console.log("automate cache clearing");
 
   return (
     <>
