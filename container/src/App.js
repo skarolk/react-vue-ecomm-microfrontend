@@ -13,6 +13,7 @@ const generateClassName = createGenerateClassName({
 
 export default () => {
   return (
+    //  BrowserRouter creates copy of Browser History
     <BrowserRouter>
       <StylesProvider generateClassName={generateClassName}>
         <Header />
