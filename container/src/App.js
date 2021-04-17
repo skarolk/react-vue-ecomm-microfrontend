@@ -21,7 +21,7 @@ export default () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const onSignIn = () => {
-    console.log("signing in user ...");
+    console.log("user signed in ...");
     setIsSignedIn(true);
   };
 
