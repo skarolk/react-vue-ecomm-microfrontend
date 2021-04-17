@@ -1,4 +1,4 @@
-console.log("auth app running ...");
+console.log("authentication app running ...");
 import React from "react";
 import ReactDOM from "react-dom";
 import { createMemoryHistory, createBrowserHistory } from "history";
