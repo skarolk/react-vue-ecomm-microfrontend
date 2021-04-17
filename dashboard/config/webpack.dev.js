@@ -11,9 +11,10 @@ const devConfig = {
   },
   devServer: {
     port: 8083,
-    historyApiFallback: {
-      index: "/index.html",
-    },
+    historyApiFallback: true,
+    // historyApiFallback: {
+    //   index: "/index.html",
+    // },
     headers: {
       // allows us to load up fonts without CORS errors
       "Access-Control-Allow-Origin": "*",
