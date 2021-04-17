@@ -1,9 +1,11 @@
-import React, { lazy, Suspense, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { lazy, Suspense, useState, useEffect } from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import {
   StylesProvider,
   createGenerateClassName,
 } from "@material-ui/core/styles";
+import { createBrowserHistory } from "history";
+
 import Header from "./components/Header";
 import ProgressBar from "./components/ProgressBar";
 // for lazy loading, don't need to important components right away
@@ -12,10 +14,13 @@ import ProgressBar from "./components/ProgressBar";
 
 const LazyMarketing = lazy(() => import("./components/MarketingApp"));
 const LazyAuth = lazy(() => import("./components/AuthApp"));
+const LazyDashboard = lazy(() => import("./components/DashboardApp"));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "container",
 });
+
+const history = createBrowserHistory();
 
 export default () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -30,9 +35,13 @@ export default () => {
     setIsSignedIn(false);
   };
 
+  useEffect(() => {
+    isSignedIn && history.push("/dashboard");
+  }, [isSignedIn]);
+
   return (
     //  BrowserRouter creates copy of Browser History
-    <BrowserRouter>
+    <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <Header isSignedIn={isSignedIn} onSignOut={onSignOut} />
         <Suspense fallback={<ProgressBar />}>
@@ -40,12 +49,14 @@ export default () => {
             <Route path="/auth">
               <LazyAuth onSignIn={onSignIn} />
             </Route>
-            <Route path="/">
-              <LazyMarketing />
+            <Route path="/dashboard">
+              {!isSignedIn && <Redirect to="/" />}
+              <LazyDashboard onSignIn={onSignIn} />
             </Route>
+            <Route path="/" component={LazyMarketing} />
           </Switch>
         </Suspense>
       </StylesProvider>
-    </BrowserRouter>
+    </Router>
   );
 };

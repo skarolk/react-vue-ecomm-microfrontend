@@ -1,4 +1,4 @@
-console.log("marketing app running ...");
+console.log("marketing app is running ...");
 import React from "react";
 import ReactDOM from "react-dom";
 import { createMemoryHistory, createBrowserHistory } from "history";

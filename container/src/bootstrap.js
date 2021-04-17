@@ -1,4 +1,4 @@
-console.log("container app running ...");
+console.log("container app is running ...");
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
