@@ -1,4 +1,4 @@
-console.log("dashboard app is running ...");
+console.log("dashboard app running ...");
 import { createApp } from "vue";
 import Dashboard from "./components/Dashboard";
 
