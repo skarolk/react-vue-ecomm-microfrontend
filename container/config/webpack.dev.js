@@ -21,6 +21,7 @@ const devConfig = {
       remotes: {
         // name before @ must match ModuleFederationPlugin's name key value for incoming app
         marketing: "marketing@http://localhost:8081/remoteEntry.js",
+        auth: "auth@http://localhost:8082/remoteEntry.js",
       },
       // array useful when you want to be specific about what packages you want to have shared
       // shared: ["react", "react-dom"]

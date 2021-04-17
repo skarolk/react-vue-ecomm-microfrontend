@@ -5,9 +5,15 @@ import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
 // mount function to start up app
-const mount = (el, { onNavigate, defaultHistory }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   // if defaultHistory is received, will be used for local routing
-  const history = defaultHistory || createMemoryHistory();
+  // to avoid history defaulting to "/", pass in path
+  const history =
+    defaultHistory ||
+    createMemoryHistory({
+      // set initial path for history
+      initialEntries: [initialPath],
+    });
   onNavigate && history.listen(onNavigate);
 
   ReactDOM.render(<App history={history} />, el);
